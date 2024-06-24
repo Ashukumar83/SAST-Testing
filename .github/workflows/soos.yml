@@ -1,6 +1,7 @@
 on: [push]
 
 jobs:
+
   soos_sast_analysis_example:
     name: SOOS SAST Analysis Example
     runs-on: ubuntu-latest
