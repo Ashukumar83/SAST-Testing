@@ -11,5 +11,5 @@ jobs:
         with:
           client_id: ${{ secrets.SOOS_CLIENT_ID }}
           api_key: ${{ secrets.SOOS_API_KEY }}
-          project_name: "My-Project"
-          sast_path: ""
+          project_name: "My-git Project"
+          sast_path: "C:\Users\ASHUKUMAR\Downloads\juice-shop-master"
