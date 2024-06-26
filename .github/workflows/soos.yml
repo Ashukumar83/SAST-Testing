@@ -16,6 +16,7 @@
           
 
 
+
 on: [push]
 
 jobs:
@@ -24,12 +25,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
+      # Example step to generate SARIF files (replace with your actual tool)
+      # This step assumes you have a command that generates SARIF files
+      - name: Generate SARIF files
+        run: |
+          # Example command to generate SARIF files
+          # Replace this with the actual command you use to generate SARIF files
+          npm install
+          npm run lint -- --format sarif --output-file ./juice-shop-master/eslint-results.sarif.json
+
       - name: List files for debugging
         run: |
           echo "Listing files in the SAST path:"
-          cd ./juice-shop-master
+          ls -R ./juice-shop-master
+
       - name: Run SOOS SAST Analysis
-        uses: soos-io/soos-sast-github-action@v1 # GET Latest Version from https://github.com/marketplace/actions/soos-sast
+        uses: soos-io/soos-sast-github-action@v1
         with:
           client_id: ${{ secrets.SOOS_CLIENT_ID }}
           api_key: ${{ secrets.SOOS_API_KEY }}
