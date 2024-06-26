@@ -15,8 +15,6 @@
 #           sast_path: "./juice-shop-master"
           
 
-
-
 on: [push]
 
 jobs:
@@ -26,14 +24,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # Example step to generate SARIF files (replace with your actual tool)
-      # This step assumes you have a command that generates SARIF files
-      - name: Generate SARIF files
+      - name: Navigate to juice-shop-master and install dependencies
         run: |
-          # Example command to generate SARIF files
-          # Replace this with the actual command you use to generate SARIF files
+          cd ./juice-shop-master
           npm install
-          npm run lint -- --format sarif --output-file ./juice-shop-master/eslint-results.sarif.json
+          npm run lint -- --format sarif --output-file eslint-results.sarif.json
 
       - name: List files for debugging
         run: |
@@ -47,3 +42,4 @@ jobs:
           api_key: ${{ secrets.SOOS_API_KEY }}
           project_name: "My Project Name"
           sast_path: "./juice-shop-master"
+
