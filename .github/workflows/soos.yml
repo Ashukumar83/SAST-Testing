@@ -14,7 +14,6 @@
 #           project_name: "My Project Name"
 #           sast_path: "./juice-shop-master"
           
-
 on: [push]
 
 jobs:
@@ -28,6 +27,7 @@ jobs:
         run: |
           cd ./juice-shop-master
           npm install
+          npm install --save-dev @angular/cli
           npm run lint -- --format sarif --output-file eslint-results.sarif.json
 
       - name: List files for debugging
@@ -42,4 +42,3 @@ jobs:
           api_key: ${{ secrets.SOOS_API_KEY }}
           project_name: "My Project Name"
           sast_path: "./juice-shop-master"
-
