@@ -1,3 +1,21 @@
+# on: [push]
+
+# jobs:
+#   soos_sast_analysis_example:
+#     name: SOOS SAST Analysis Example
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@master
+#       - name: Run SOOS SAST Analysis
+#         uses: soos-io/soos-sast-github-action@v1 # GET Latest Version from https://github.com/marketplace/actions/soos-sast
+#         with:
+#           client_id: ${{ secrets.SOOS_CLIENT_ID }}
+#           api_key: ${{ secrets.SOOS_API_KEY }}
+#           project_name: "My Project Name"
+#           sast_path: "./juice-shop-master"
+          
+
+
 on: [push]
 
 jobs:
@@ -5,7 +23,11 @@ jobs:
     name: SOOS SAST Analysis Example
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
+      - name: List files for debugging
+        run: |
+          echo "Listing files in the SAST path:"
+          ls -R ./juice-shop-master
       - name: Run SOOS SAST Analysis
         uses: soos-io/soos-sast-github-action@v1 # GET Latest Version from https://github.com/marketplace/actions/soos-sast
         with:
@@ -13,4 +35,3 @@ jobs:
           api_key: ${{ secrets.SOOS_API_KEY }}
           project_name: "My Project Name"
           sast_path: "./juice-shop-master"
-          
