@@ -14,31 +14,23 @@
 #           project_name: "My Project Name"
 #           sast_path: "./juice-shop-master"
           
+name: SOOS SAST Analysis
+ 
 on: [push]
-
+ 
 jobs:
-  soos_sast_analysis_example:
-    name: SOOS SAST Analysis Example
+  soos_sast_analysis:
+    name: SOOS SAST Analysis
     runs-on: ubuntu-latest
+ 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Navigate to juice-shop-master and install dependencies
-        run: |
-          ./juice-shop-master
-          npm install
-          npm install --save-dev @angular/cli
-          npm run lint -- --format sarif --output-file eslint-results.sarif.json
-
-      - name: List files for debugging
-        run: |
-          echo "Listing files in the SAST path:"
-          ls -R ./juice-shop-master
-
-      - name: Run SOOS SAST Analysis
-        uses: soos-io/soos-sast-github-action@v1
-        with:
-          client_id: ${{ secrets.SOOS_CLIENT_ID }}
-          api_key: ${{ secrets.SOOS_API_KEY }}
-          project_name: "My Project Name"
-          sast_path: "./juice-shop-master"
+    - name: Checkout code
+      uses: actions/checkout@v2
+ 
+    - name: Run SOOS SAST Analysis
+      uses: soos-io/soos-sast-github-action@v1
+      with:
+        client_id: ${{ secrets.SOOS_CLIENT_ID }}
+        api_key: ${{ secrets.SOOS_API_KEY }}
+        project_name: "Juice Shop Project"
+        sast_path: "./juice-shop-master"
