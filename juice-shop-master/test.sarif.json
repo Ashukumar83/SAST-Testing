@@ -10,6 +10,7 @@
           "informationUri": "https://example.com/sast-tool",
           "rules": [
             {
+              
               "id": "EX001",
               "shortDescription": {
                 "text": "Example rule"
